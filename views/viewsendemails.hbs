@@ -1,0 +1,100 @@
+{{#section 'header'}}
+		{{> iter}}
+{{/section}}
+    
+    <section class="hero-wrap hero-wrap-2" style="background: #d11f41;">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">EMAILS</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+		
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row">
+          <div class="col-lg-8 ftco-animate">
+            <h2 class="mb-3"></h2>
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5 h4 font-weight-bold">SENT EMAILS</h3>
+              <ul class="comment-list">
+                {{#if psts}}
+                      {{#each psts}}
+                        <li class="comment">
+                          <div class="vcard bio">
+                            <img src="images/teacher-1.jpg" alt="Image placeholder">
+                          </div>
+                          <div class="comment-body">
+                            <h3>Admin</h3>
+                            <div class="meta mb-2">{{this.subject}}</div>
+                            <p>{{this.message}}</p>
+                            {{!-- <p><a href="#" class="reply"></a></p> --}}
+                          </div>
+                        </li>
+                        {{/each}}
+                        {{else}}                            
+                {{/if}} 
+                </ul>
+              <!-- END comment-list -->
+        </div>
+			</div>
+      
+      <div class="col-lg-4 sidebar ftco-animate">
+          <div class="sidebar-box">
+            <div class="search-form">
+              <div class="form-group">
+                <label for="name">Enter Subject</label>
+                <input type="text" id="subject"class="form-control" placeholder="Enter subject">
+              </div>
+              <div class="form-group">
+                <label for="name">Enter Message</label>
+                <input type="text" id="message"class="form-control" placeholder="Enter message">
+              </div>
+              <div class="form-group">
+                <input type="submit" id="btnsub" value="Send Email" class="btn py-3 px-4 btn-primary" onclick="sendEmail()">
+              </div>
+            </div>
+          </div>
+        </div><!-- END COL -->
+		</section>
+{{#section 'footer'}}
+	{{> foot}}
+{{/section}}
+
+{{#section 'script'}}
+	<script>
+		function sendEmail() {
+
+      var message=document.getElementById("message").value;
+      var subject=document.getElementById("subject").value;
+
+          if(message && subject){            
+            $('#btnsub').prop('disabled', true);           
+            $.ajax({
+              url: "/sendmail",
+              type: "POST",
+              data:{message:message,subject:subject},
+              success: function(text) {				
+                if(text){                      
+                  alert("successfully sent");
+                  $('#exampleModal').modal('toggle');
+                  document.getElementById("subject").value="";
+                  document.getElementById("message").value=""; 
+                  $('#btnsub').prop('disabled', false);
+                } else{
+                  alert("An Error Occured try again later.");
+                  $('#btnsub').prop('disabled', false);
+                }
+              }
+            });    
+          }else{
+            alert("Kindly fill out all details on the form .");
+            $('#btnsub').prop('disabled', false);
+          }
+		}
+  </script>
+{{/section}}

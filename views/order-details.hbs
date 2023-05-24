@@ -1,0 +1,109 @@
+{{#section 'header'}}
+	{{> iter}}
+{{/section}}
+
+{{#section 'header'}}
+		{{> iter}}
+{{/section}}
+    
+    <section class="hero-wrap hero-wrap-2" style="background: #d11f41;">
+      {{!-- <div class="overlay"></div> --}}
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">MPESA PAYMENT.</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Mpesa Payment <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+		
+		<section class="ftco-section ftco-no-pt ftc-no-pb">
+			<div class="container">
+				<div class="row d-flex">
+					<div class="col-md-5 order-md-last wrap-about wrap-about d-flex align-items-stretch">
+						<div class="img" style="background-image: url(/images/about.jpg); border"></div>
+					</div>
+					<div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">					
+							<div class="col-md-12">
+						<div class="order-summary clearfix">
+							<div class="section-title">
+								<h3 class="title">MPESA</h3>
+							</div>
+							<table class="shopping-cart-table table">
+								<thead>
+									<tr>
+										<th>CheckoutRequestID</th>
+										<th class="text-center">MerchantRequestID</th>										
+										<th>ResultDesc</th>
+										<th class="text-right"></th>
+										<th class="text-right"></th>
+									</tr>
+								</thead>
+								<tbody>
+									{{#if ordcs}}
+										{{#each ordcs}}
+											<tr>
+												<td class="details">{{this.CheckoutRequestID}}</td>
+												<td class="price text-center"><strong>{{this.MerchantRequestID}}</strong><br></td>												
+												<td class="thumb"><img src="{{this.ResultDesc}}" alt=""></td>
+												{{!-- {{#each this.CallbackMetadata.Item}} --}}
+													<td class="text-right">{{json this.CallbackMetadata.Item}}</td>
+												{{!-- {{/each}} --}}
+												<td class="text-right">{{json this}}</td>
+											</tr>
+										{{/each}}
+									{{else}}
+                            
+                        			{{/if}}
+								
+								</tbody>
+								
+							</table>
+							
+						</div>
+
+					</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	<section class="ftco-gallery">
+    	<div class="container-wrap">
+    		<div class="row no-gutters">
+					<div class="col-md-3 ftco-animate">
+						<a href="/images/image_1.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(/images/course-1.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="/images/image_2.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(/images/image_2.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="/images/image_3.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(/images/image_3.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="/images/image_4.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(/images/image_4.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+        </div>
+    	</div>
+    </section>
+{{#section 'footer'}}
+	{{> foot}}
+{{/section}}
+ 

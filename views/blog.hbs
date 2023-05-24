@@ -1,0 +1,141 @@
+{{#section 'header'}}
+		{{> iter}}
+{{/section}}
+		
+		<section class="ftco-section bg-light" style="margin-top: 10px;">
+				<div class="row">
+          <div class="col-lg-8 ftco-animate">
+                                                      
+                              {{!-- <div class="col-md-5 col-lg-5 ftco-animate">
+                                <div class="blog-entry">
+                                  <a href="/viewblog/{{@key}}" class="block-20 d-flex align-items-end" style="background-image: url('images/forex.jpg');">
+                                    <div class="meta-date text-center p-2">
+                                      <span class="day">26</span>
+                                      <span class="mos">June</span>
+                                      <span class="yr">2023</span>
+                                    </div>
+                                  </a>
+                                  <div class="text bg-white p-4">
+                                    <h3 class="heading"><a href="/viewblog/{{@key}}">{{this.title}}</a></h3>
+                                    <p></p>
+                                    <div class="d-flex align-items-center mt-4">
+                                      <p class="mb-0"><a href="/viewblog/{{@key}}" class="btn btn-primary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
+                                      <p class="ml-auto mb-0">
+                                        <a href="/viewblog/{{@key}}" class="mr-2">Author: {{this.author}}</a>
+                                        <a href="/viewblog/{{@key}}" class="meta-chat"><span class="icon-chat"></span> 3</a>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> --}}
+                              {{!-- Beginning of chat  --}}
+                              <div class="card chat-app">
+                                    <div class="chat" style="margin-left: 0px;">
+                                        <div class="chat-header " >
+                                          <div class="row">
+                                            <div class="col-lg-8">
+                                              <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                              </a>
+                                              <div class="chat-about">
+                                                <h6 class="m-b-0" id="textname">Admin</h6>
+                                                <small>available</small>
+                                              </div>
+                                            </div>
+                                            <div class="col-lg-4 hidden-sm text-right">
+                                              <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="icon-camera"></i></a>
+                                              <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="icon-image"></i></a>
+                                              <a href="javascript:void(0);" class="btn btn-outline-info"><i class="icon-cogs"></i></a>
+                                              <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="icon-question"></i></a>
+                                            </div>
+                                          </div>
+                                          </div>
+                                        <div class="chat-history">
+                                          <ul class="m-b-0" id="chathistorylist">
+                                            {{#if psts}}
+                                                {{#each psts}} 
+                                                            <li>
+                                                              <div class="message-data text-right">
+                                                              <span class="message-data-time">{{dateTransform this.dte}}</span>
+                                                              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                                              </div>
+                                                              <div class="message other-message float-right"> {{this.post}} </div>
+                                                            </li>
+                                                {{/each}}
+                                            {{else}}                            
+                                          {{/if}} 
+                                                              
+                                          </ul>
+                                        </div>
+                                        {{!-- <div class="chat-message">
+                                          <div class="input-group mb-0">
+                                            <div class="input-group-prepend">
+                                              <button class="input-group-text"  onclick="uploadAdminResponseContent()" ><i class="icon-paper-plane"></i></button>
+                                            </div>
+                                              <input type="text" id="message"class="form-control" placeholder="enter link" >
+                                          </div>
+                                        </div> --}}
+                                    </div>
+                                  </div>
+                      
+          </div>        
+        
+          <div class="col-lg-4 sidebar ftco-animate">                  
+              <div class="sidebar-box ftco-animate">
+                <h3></h3>
+                <ul class="categories">
+                          <li><a href="/viewchats/{{cart.id}}">Chat With the Admin </a></li>
+                </ul>
+              </div>
+              <div class="sidebar-box">
+                <div class="search-form">
+                  <div class="form-group">
+                    <label for="name">Give Testimonial</label>
+                    <input type="text" id="testimony"class="form-control" placeholder="give us a recommendation">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" id="btnsub" value="Post" class="btn py-3 px-4 btn-primary" onclick="updateTestimonial()">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <!-- END COL -->
+          
+        </div>
+		</section>
+
+{{#section 'footer'}}
+  {{> foot}}
+{{/section}}
+
+{{#section 'script'}}
+	<script>
+		function updateTestimonial() {
+
+      var testimony=document.getElementById("testimony").value;
+
+          if(testimony){            
+            $('#btnsub').prop('disabled', true);           
+            $.ajax({
+              url: "/updatetestimonial",
+              type: "POST",
+              data:{testimony:testimony},
+              success: function(text) {				
+                if(text){                      
+                  alert("Link has been updated successfully");
+                  $('#exampleModal').modal('toggle');
+                  document.getElementById("testimony").value=""; 
+                  $('#btnsub').prop('disabled', false);
+                } else{
+                  alert("An Error Occured try again later.");
+                  $('#btnsub').prop('disabled', false);
+                }
+              }
+            });    
+          }else{
+            alert("Kindly fill out all details on the form .");
+            $('#btnsub').prop('disabled', false);
+          }
+		}
+  </script>
+{{/section}}

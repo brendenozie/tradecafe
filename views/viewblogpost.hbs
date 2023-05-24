@@ -1,0 +1,86 @@
+{{#section 'header'}}
+		{{> iter}}
+{{/section}}
+    
+    <section class="hero-wrap hero-wrap-2" style="background: #d11f41;">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">BLOGS</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+		    <section class="ftco-section">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 ftco-animate">
+                      <h2 class="mb-3"></h2>
+                      <div class="pt-5 mt-5">
+                        <h3 class="mb-5 h4 font-weight-bold">BLOGS LIST</h3>
+                        <ul class="comment-list">
+                          {{#if psts}}
+                            {{#each psts}}
+                              <li class="comment">
+                                <div class="vcard bio">
+                                  <img src="images/teacher-1.jpg" alt="Image placeholder">
+                                </div>
+                                <div class="comment-body">
+                                  <h3>{{this.title}}</h3>
+                                  <div class="meta mb-2">Author: {{this.author}}</div>
+                                  {{!-- <p>{{this.post}}</p> --}}
+                                  <p><a href="/editblog?field1={{@key}}&data={{jsonet this}}" class="reply" style="
+                                          padding: 13px;
+                                          border: 2px solid black;
+                                      ">Edit</a>  
+                                  <button onclick="delblog('{{@key}}')" class="reply">Delete</button></p>
+                                </div>
+                              </li>
+                            {{/each}}
+                          {{else}}                            
+                        {{/if}} 
+                        </ul>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 sidebar ftco-animate">
+                  <div class="sidebar-box ftco-animate">
+                    <div class="sidebar-box ftco-animate">
+                      <h3></h3>
+                      <ul class="categories">
+                        <li><a href="/newpost">ADD NEW Blog Post</a></li>
+                      </ul>
+                    </div>
+                </div><!-- END COL -->
+              </div>
+            </div>      
+		</section>
+{{#section 'footer'}}
+	{{> foot}}
+{{/section}}
+
+
+{{#section 'script'}}
+	<script>
+		function delblog(key) {
+          if(key ){                    
+            $.ajax({
+              url: "/deleteblog",
+              type: "POST",
+              data:{keyid:key},
+              success: function(text) {				
+                if(text){                      
+                  alert("successfully sent");
+                } else{
+                  alert("An Error Occured try again later.");
+                }
+              }
+            });    
+          }else{
+            alert("Kindly fill out all details on the form .");
+          }
+		}
+  </script>
+{{/section}}
