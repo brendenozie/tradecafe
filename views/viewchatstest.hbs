@@ -1,0 +1,120 @@
+{{#section 'header'}}
+		{{> iter}}
+{{/section}}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card chat-app">
+        <div id="plist" class="people-list">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            {{!-- <span class="input-group-text"><i class="fa fa-search"></i></span> --}}
+          </div>
+            {{!-- <input type="text" class="form-control" placeholder="Search..."> --}}
+        </div>
+        <ul class="list-unstyled chat-list mt-2 mb-0">
+          <li class="active">
+          <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+          <div class="about">
+          <div class="name">Admin Admin</div>
+          <div class="status"> <i class="fa fa-circle online"></i> online </div>
+          </div>
+          </li>
+        </ul>
+        </div>
+        <div class="chat">
+          <div class="chat-header ">
+          <div class="row">
+            <div class="col-lg-6">
+              <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+              </a>
+              <div class="chat-about">
+                <h6 class="m-b-0">Admin Admin</h6>
+                <small>Last seen: 2 hours ago</small>
+              </div>
+            </div>
+            <div class="col-lg-6 hidden-sm text-right">
+              <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+              <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+              <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+              <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+            </div>
+          </div>
+          </div>
+        <div class="chat-history">
+        <ul class="m-b-0">
+          {{#if accs}}
+                        {{#each accs}}
+                            {{#ifEquals this.firstname "admin"}}
+                                <li >
+                                  <div class="message-data text-right">
+                                  <span class="message-data-time">{{dateTransform this.dte}}</span>
+                                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                  </div>
+                                  <div class="message other-message float-right"> {{this.message}} </div>
+                                </li>
+                            {{else}}        
+                                <li 
+                                >
+                                  <div class="message-data">
+                                    <span class="message-data-time">{{dateTransform this.dte}}</span>
+                                  </div>
+                                  <div class="message my-message">{{this.message}}</div>
+                                </li>                    
+                            {{/ifEquals}}  
+                          {{/each}}
+                      {{else}}                            
+                    {{/if}}  
+          
+        </ul>
+        </div>
+        <div class="chat-message">
+          <div class="input-group mb-0">
+            <div class="input-group-prepend">
+              <button class="input-group-text"  onclick="sendChat()" ><i class="icon-paper-plane"></i></button>
+            </div>
+              <input type="text" id="message"class="form-control" placeholder="enter link" >
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#section 'footer'}}
+	{{> foot}}
+{{/section}}
+
+
+{{#section 'script'}}
+	<script>
+		function sendChat() {
+
+      var message=document.getElementById("message").value;  
+
+          if(message){            
+            $('#btnsub').prop('disabled', true);           
+            $.ajax({
+              url: "/uploadchat",
+              type: "POST",
+              data:{message:message},
+              success: function(text) {				
+                if(text){                      
+                  window.location.reload();
+                } else{
+                  alert("An Error Occured try again later.");
+                  $('#btnsub').prop('disabled', false);
+                }
+              }
+            });    
+          }else{
+            alert("Kindly fill out all details on the form .");
+            $('#btnsub').prop('disabled', false);
+          }
+		}
+  </script>
+{{/section}}

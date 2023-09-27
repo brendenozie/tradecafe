@@ -1,0 +1,117 @@
+{{#section 'header'}}
+		{{> iter}}
+{{/section}}
+    
+    <section class="ftco-section">
+			<div class="container">
+				<div class="row">
+          <div class="col-lg-8 ftco-animate">
+            <h2 class="mb-3">User Testimonials</h2>
+            
+
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5 h4 font-weight-bold">Testimonials</h3>
+              <ul class="comment-list">
+				{{#if psts}}
+                          {{#each psts}}
+							<li class="comment">
+							<div class="vcard bio">
+								<img src="images/teacher-1.jpg" alt="Image placeholder">
+							</div>
+							<div class="comment-body">
+								<h3>{{this.username}}</h3>
+								<div class="meta mb-2">June 27, 2019 at 2:21pm</div>
+								<p>{{this.testimony}}</p>
+								<p>{{this.status}}</p>
+								<p><button class="reply" onclick="approveTestimonial(`{{this.uid}}`)">Approve</button>  
+									<button  class="reply"  onclick="denyTestimonial(`{{this.uid}}`)">Deny</button>
+								</p>
+							</div>
+							</li>
+				{{/each}}
+                {{else}}                            
+                {{/if}} 
+               
+              </ul>
+              <!-- END comment-list -->
+              
+
+        
+        </div>
+			</div>
+		</section>
+
+
+		<section class="ftco-gallery">
+    	<div class="container-wrap">
+    		<div class="row no-gutters">
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_1.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/course-1.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_2.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_2.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_3.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_3.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_4.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_4.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+        </div>
+    	</div>
+    </section>
+{{#section 'footer'}}
+	{{> foot}}
+{{/section}}
+
+
+{{#section 'script'}}
+	<script>
+		function approveTestimonial(id) {                   
+            $.ajax({
+              url: `/apprtest/${id}`,
+              type: "GET",
+              success: function(text) {				
+                if(text){                      
+                  alert("Link has been updated successfully");
+                  
+                } else{
+                  alert("An Error Occured try again later.");
+                }
+              }
+            });            
+		};
+
+		function denyTestimonial(id) {                   
+            $.ajax({
+              url: `/appdtest/${id}`,
+              type: "GET",
+              success: function(text) {				
+                if(text){                      
+                  alert("Link has been updated successfully");
+                  
+                } else{
+                  alert("An Error Occured try again later.");
+                }
+              }
+            });            
+		};
+
+  </script>
+{{/section}}

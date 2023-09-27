@@ -1,0 +1,238 @@
+{{#section 'header'}}
+		{{> iter}}
+{{/section}}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card chat-app">
+        <div id="plist" class="people-list">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            {{!-- <span class="input-group-text"><i class="fa fa-search"></i></span> --}}
+          </div>
+            {{!-- <input type="text" class="form-control" placeholder="Search..."> --}}
+        </div>
+        <ul class="list-unstyled chat-list mt-2 mb-0">
+          {{#if accs}}
+                {{#each accs}}
+                    <li onclick="viewChat('{{@key}}',`{{this.firstname}} {{this.lastname}}`)">
+                      <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                      <div class="about">
+                        <div class="name">{{this.firstname}} {{this.lastname}}</div>
+                        <div class="status"> <i class="fa fa-circle online"></i></div>
+                      </div>
+                    </li>
+                {{/each}}
+              {{else}}                            
+            {{/if}}  
+          
+        </ul>
+        </div>
+        <div class="chat">
+            <div class="chat-header " >
+              <div class="row">
+                <div class="col-lg-6">
+                  <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                  </a>
+                  <div class="chat-about">
+                    <h6 class="m-b-0" id="textname"></h6>
+                    <small>Last seen: 2 hours ago</small>
+                  </div>
+                </div>
+                <div class="col-lg-6 hidden-sm text-right">
+                  <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                  <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+                  <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+                  <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+                </div>
+              </div>
+              </div>
+            <div class="chat-history">
+              <ul class="m-b-0" id="chathistorylist">
+                
+              </ul>
+            </div>
+            <div class="chat-message">
+              <div class="input-group mb-0">
+                <div class="input-group-prepend">
+                  <button class="input-group-text"  onclick="uploadAdminResponseContent()" ><i class="icon-paper-plane"></i></button>
+                </div>
+                  <input type="text" id="message"class="form-control" placeholder="enter link" >
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <section class="hero-wrap hero-wrap-2" style="background: #d11f41;">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Chats</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+{{#section 'footer'}}
+	{{> foot}}
+{{/section}}
+
+
+{{#section 'script'}}
+	<script>
+
+    var uiid="";
+    var name="";
+
+    function dateTransform (value) {
+        const timeStamp = value.replace(/\,/g,'');
+        const dateFormat= new Date(parseInt(timeStamp, 10));
+        //  timeStamp=dateFormat.getDate()+
+        //        "/"+(dateFormat.getMonth()+1)+
+        //        "/"+dateFormat.getFullYear()+
+        //        " "+dateFormat.getHours()+
+        //        ":"+dateFormat.getMinutes()+
+        //        ":"+dateFormat.getSeconds();
+
+        return dateFormat.toLocaleString();
+    }
+
+		function uploadAdminResponseContent() {
+      if(uiid){
+
+          var message=document.getElementById("message").value;  
+
+          if(message){         
+
+            $('#btnsub').prop('disabled', true);         
+
+            $.ajax({
+              url: "/uploadadminchat",
+              type: "POST",
+              data:{message:message,id:uiid},
+              success: function(text) {				
+                if(text){              
+
+                  viewChat(uiid,name);
+
+                  $('#exampleModal').modal('toggle');
+                  document.getElementById("message").value=""; 
+                  $('#btnsub').prop('disabled', false);
+                } else{
+                  alert("An Error Occured try again later.");
+                  $('#btnsub').prop('disabled', false);
+                }
+              }
+            });  
+
+          }else{
+            alert("Kindly fill out all details on the form .");
+            $('#btnsub').prop('disabled', false);
+          }
+      }else{
+            alert("Error...");
+            $('#btnsub').prop('disabled', false);
+          }
+		}
+
+    function viewChat(uid,name) {
+      
+      uiid=uid;
+      name=name;
+
+      document.querySelector("#chathistorylist").innerHTML = "";  
+
+          $.ajax({
+            url: "/loaduid",
+            type: "POST",
+            data: ({uid:uid}),
+            success: function(text) {         
+                
+                  if(text){
+                  
+                const result =  Object.values(text.data).sort(function(a,b){
+                          // Turn your strings into dates, and then subtract them
+                          // to get a value that is either negative, positive, or zero.
+                         // a=a.replace(/\,/g,'');
+                          // b=b.replace(/\,/g,'');
+                          return new Date(parseInt(a.dte.replace(/\,/g,''),10)) - new Date(parseInt(b.dte.replace(/\,/g,''), 10));
+                        });
+
+                    document.getElementById('textname').innerHTML = name;
+                      
+                      for (var key in result)  {
+
+                        var obj1 = result[key];
+
+                        if(obj1.firstname != 'admin') {
+                          
+                          var mainElementListParent = document.querySelector("#chathistorylist");
+                        
+                            var listitem = document.createElement("li");
+                            
+                              var listItemMessageData = document.createElement("div");
+                                  listItemMessageData.classList="message-data text-right";
+
+                                  var spqty=document.createElement('span');
+                                  spqty.classList='message-data-time';
+                                  spqty.innerText= dateTransform(obj1.dte);
+                                  
+                                  var img= document.createElement("img");
+                                  img.src='https://bootdey.com/img/Content/avatar/avatar7.png';
+                            
+                            var divMessageRight=document.createElement('div');
+                            divMessageRight.classList='message other-message float-right';
+                            divMessageRight.innerText= obj1.message;
+
+                            listItemMessageData.appendChild(spqty);
+                            listItemMessageData.appendChild(img);
+
+                            listitem.appendChild(listItemMessageData);
+                            listitem.appendChild(divMessageRight);
+                          
+                            mainElementListParent.appendChild(listitem);
+
+                        }else{
+
+
+                            var mainElementListParentt = document.querySelector("#chathistorylist");
+
+                            var listitem1 = document.createElement("li");
+                            
+                              var listItemMessageData2 = document.createElement("div");
+                                  listItemMessageData2.classList="message-data";
+
+                                  var spqty1=document.createElement('span');
+                                  spqty1.classList='message-data-time';
+                                  spqty1.innerText= dateTransform(obj1.dte);
+                            
+                            var divMessage=document.createElement('div');
+                            divMessage.classList='message my-message';
+                            divMessage.innerText= obj1.message;
+
+                            listitem1.appendChild(listItemMessageData2);
+                            listitem1.appendChild(divMessage);
+                          
+                            mainElementListParentt.appendChild(listitem1);
+                        }
+
+                    }
+                    
+                  }else{
+                    console.log("ERRROR");
+                  }
+            } 
+      });
+    }
+
+
+  </script>
+{{/section}}

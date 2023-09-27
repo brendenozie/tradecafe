@@ -1,0 +1,183 @@
+{{#section 'header'}}
+		{{> iter}}
+{{/section}}
+    
+    <section class="hero-wrap hero-wrap-2" style="background: #d11f41;">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Admin Dashboard</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+		
+	<section class="ftco-section bg-light">
+			<div class="container">
+				<div class="row">
+          <div class="col-lg-8 ftco-animate">
+            <div class="col-md-6 col-lg-4 ftco-animate">
+              <div class="blog-entry">
+                <div class="text bg-white p-4">
+                  <h3 class="heading"><a href="/viewchatsadminn">View Chats</a></h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 ftco-animate">
+              <div class="blog-entry">
+                <div class="text bg-white p-4">
+                  <h3 class="heading"><a href="/accountspayments">Accounts and Payments</a></h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 ftco-animate">
+              <div class="blog-entry">
+                <div class="text bg-white p-4">
+                  <h3 class="heading"><a href="/admintestimonial">View Testimonials</a></h3>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 ftco-animate">
+              <div class="blog-entry">
+                <div class="text bg-white p-4">
+                  <h3 class="heading"><a href="/blogposts">Blog Posts</a></h3>
+                  
+                </div>
+              </div>
+            </div>
+
+            {{!-- <div class="col-md-6 col-lg-4 ftco-animate">
+              <div class="blog-entry">
+                <div class="text bg-white p-4">
+                  <h3 class="heading"><a href="#">Signals</a></h3>
+                  
+                </div>
+              </div>
+            </div> --}}
+
+            {{!-- <div class="col-md-6 col-lg-4 ftco-animate">
+              <div class="blog-entry">
+                <div class="text bg-white p-4">
+                  <h3 class="heading"><a href="">Add Online meet Link</a></h3>
+                </div>
+              </div>
+            </div> --}}
+            <div class="col-md-6 col-lg-4 ftco-animate">
+              <div class="blog-entry">
+                <div class="text bg-white p-4">
+                  <h3 class="heading"><a href="/massemails">Send Emails</a></h3>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="col-lg-4 sidebar ftco-animate">
+            
+            <div class="sidebar-box ftco-animate">
+            	<h3>Previous Online Link</h3>
+              <ul class="categories">
+                {{#if zms}}
+                     {{#each zms}}
+                         <li><a href="{{this.zoomlink}}">{{this.zoomlink}} </a></li>
+                     {{/each}}
+                {{else}}                            
+                {{/if}} 
+              </ul>
+            </div>
+
+            <div class="sidebar-box">
+              <div class="search-form">
+                <div class="form-group">
+                  <label for="name">Enter Meet Link</label>
+                  <input type="text" id="zoomlink"class="form-control" placeholder="enter link">
+                </div>
+                <div class="form-group">
+                  <input type="submit" id="btnsub" value="Post Link" class="btn py-3 px-4 btn-primary" onclick="updateLink()">
+                </div>
+              </div>
+            </div>
+
+          </div><!-- END COL -->
+            </div>  
+        </div>
+			</div>
+		</section>
+
+
+		<section class="ftco-gallery">
+    	<div class="container-wrap">
+    		<div class="row no-gutters">
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_1.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/course-1.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_2.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_2.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_3.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_3.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_4.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_4.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+        </div>
+    	</div>
+    </section>
+{{#section 'footer'}}
+	{{> foot}}
+{{/section}}
+
+
+{{#section 'script'}}
+	<script>
+		function updateLink() {
+
+      var zoomlink=document.getElementById("zoomlink").value;
+
+          if(zoomlink){            
+            $('#btnsub').prop('disabled', true);           
+            $.ajax({
+              url: "/updatezoomlink",
+              type: "POST",
+              data:{zoomlink:zoomlink},
+              success: function(text) {				
+                if(text){                      
+                  alert("Link has been updated successfully");
+                  $('#exampleModal').modal('toggle');
+                  document.getElementById("zoomlink").value=""; 
+                  $('#btnsub').prop('disabled', false);
+                } else{
+                  alert("An Error Occured try again later.");
+                  $('#btnsub').prop('disabled', false);
+                }
+              }
+            });    
+          }else{
+            alert("Kindly fill out all details on the form .");
+            $('#btnsub').prop('disabled', false);
+          }
+		}
+  </script>
+{{/section}}

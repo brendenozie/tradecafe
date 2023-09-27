@@ -1,0 +1,94 @@
+{{#section 'header'}}
+	{{> iter}}
+{{/section}}
+
+
+<section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb" style="background-color: #000;"   data-stellar-background-ratio="0.5">
+		<div class="container">
+			<div class="row justify-content-center align-items-center" style="min-height: 550px;">
+								
+			</div>
+		</div>
+</section>		
+
+<section class="ftco-section bg-light ftco-home" style="background: #323232!important;">
+<div class="container">
+<div class="row">
+<div class="col-lg-9">
+<div class="container">
+<div class="row">
+<div class="col-lg-6">
+<div class="price-box">
+<div class="">
+<div class="price-label basic">Trade Signals</div>
+<div class="price">$67.00</div>
+<div class="price-info">One Month Subscription</div>
+</div>
+<div class="info">
+<ul>
+<li><i class="fas fa-check" aria-hidden="true"></i><b>Premium Monthly Signals</b></li>
+<li><i class="fas fa-check" aria-hidden="true"></i>Sniper Entries</li>
+<li><i class="fas fa-check" aria-hidden="true"></i>Maximum 20 pips Stop Loss</li>
+<li><i class="fas fa-check" aria-hidden="true"></i><b>0 - 3 trades Weekly</b></li>
+<li style="line-height: 1.35"><i class="fas fa-check" aria-hidden="true"></i>Risk &amp; Money Management</li>
+<li style="line-height: 1.35"><i class="fas fa-check" aria-hidden="true"></i><b>80 - 90% Accuracy</b></li>
+<li style="line-height: 1.35"><i class="fas fa-check" aria-hidden="true"></i>Free Tutorials</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-lg-6">
+<div class="heading-section mb-5 mt-5 mt-lg-0">
+<h4 class="mb-3 center" style="font-size: 1.25em; color: #fff; font-weight: 700; margin-bottom: -35px!important; letter-spacing: -1px;">Payment Options</h4>
+</div>
+<div class="alert alert-info" style="font-size: 14px;"> For International Payments, kindly proceed to make payments in USDt. <br><br>
+<span class="price-label basic"><a href="https://www.habbyforex.com/en-us/signals/payment.USDt" data-target="payment.USDt" style="color: #fff">Subscribe Now</a></span><br><br>
+- After payment, Kindly Send proof of payment to <b>support@habbyforex.com</b>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3">
+<h4 class="mb-3 center" style="font-size: 1.2em; color: #fff; font-weight: 700; margin-bottom: 5px!important; letter-spacing: -1px;">Go on Further &gt;</h4>
+<p class="lead b" style="line-height: 1.15; font-size: 1.2em">You may also be interested in Mentorship</p>
+<a href="https://www.habbyforex.com/en-us/mentorship"><img src="./Premium Signals_ Trade with Habby __ Habby Forex Trading Academy __ ... forever stuck with profit_files/ad-1.png" style="font-family:&#39;ubuntu&#39;; width: 100%; line-height: 1" class="img-fluid" alt=""></a>
+</div>
+</div>
+</div>
+<br>
+</section>
+
+{{#section 'footer'}}
+	{{> foot}}
+{{/section}}
+    
+{{#section 'script'}}
+	<script>
+		function loginCheck() {
+
+		var email=document.getElementById("email").value;  
+		var password=document.getElementById("password").value;
+
+			if(email && password){            
+				$('#btnsub').prop('disabled', true);           
+				$.ajax({
+				url: "/loginconfirmcheck",
+				type: "POST",
+				data:{email:email,password:password},
+				success: function(text) {	
+					if(text.data.firstname){                      
+						window.location.href = "/";
+					} else{
+						alert(`An Error Occured. Check login details and try again.`);
+						$('#btnsub').prop('disabled', false);
+					}
+				}
+				});    
+			}else{
+				alert("Kindly fill out all details on the form .");
+				$('#btnsub').prop('disabled', false);
+			}
+			}
+	</script>
+{{/section}}
