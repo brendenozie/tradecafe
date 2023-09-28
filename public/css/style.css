@@ -5783,8 +5783,13 @@ button.bg-light:hover,
 button.bg-light:focus {
   background-color: #dae0e5 !important; }
 
+/* .bg-dark {
+  background-color: #343a40 !important; } */
+
+  
 .bg-dark {
-  background-color: #343a40 !important; }
+  background-color: #0a293b!important; 
+  background-blend-mode: multiply;}
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
@@ -11199,3 +11204,227 @@ Header Style
 .dk-footer .contact-us.contact-us-last {
   margin-left: 0px; }
 }
+
+
+/* Category Ads */
+
+#ads {
+  margin: 30px 0 30px 0;
+ 
+}
+
+#ads .card-notify-badge {
+      position: absolute;
+      right: -10px;
+      top: 160px;
+      background: #007bff;
+      text-align: center;
+      border-radius: 45px 45px 45px 45px; 
+      color: #ffffff;
+      padding: 1px 15px;
+      font-weight: 800;
+      font-size: 0.75em;
+
+  }
+
+#ads .card-notify-btn {
+      position: absolute;
+      background: #007bff;
+      text-align: center;
+      border-radius: 45px 45px 45px 45px; 
+      color: #ffffff;
+      padding: 1px 15px;
+      font-weight: 800;
+      font-size: 0.75em;
+
+  }
+
+#ads .card-notify-year {
+      position: absolute;
+      right: -10px;
+      top: -20px;
+      background: #ff4444;
+      border-radius: 50%;
+      text-align: center;
+      color: #fff;      
+      font-size: 14px;      
+      width: 50px;
+      height: 50px;    
+      padding: 15px 0 0 0;
+}
+
+
+#ads .card-detail-badge {   
+      position: absolute;
+      right: -8px;
+      top: 186px;   
+      background: #a9ea44;
+      text-align: center;
+      border-radius: 45px 45px 45px 45px;
+      color: #000;
+      padding: 0px 10px;
+      font-size: 0.7em;
+      font-weight: 700        
+  }
+
+ 
+
+#ads .card:hover {
+          background: #fff;
+          box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+          border-radius: 4px;
+          transition: all 0.3s ease;
+      }
+
+#ads .card-image-overlay {
+      font-size: 20px;
+      
+  }
+
+
+#ads .card-image-overlay span {
+          display: inline-block;              
+      }
+
+
+#ads .ad-btn {
+      width: auto;
+      border-radius: 80px;
+      font-size: 13px;
+      text-align: center;
+      border: 3px solid #f8f9fa;
+      padding: 2px 12px 2px 12px;
+      text-decoration: none;
+      margin: 20px auto 1px auto;
+      color: #000;
+      overflow: hidden;        
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background-color: #e6de08;
+  }
+
+#ads .ad-btn:hover {
+          background-color: #ffffff;
+          color: #1e1717;
+          border: 2px solid #ffffff;
+          background: transparent;
+          transition: all 0.3s ease;
+          box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+      }
+
+#ads .ad-title h5 {
+      text-transform: uppercase;
+      font-size: 18px;
+  }
+
+.chaport-logo span {
+  color: rgb(255 255 255) !important;
+}
+
+.chaport-content .chaport-logo {
+  color: rgb(255 255 255) !important;
+}
+
+.chaport-container.chaport-container-positioned {
+      bottom: 33px !important;
+      right: 57px !important;
+}
+
+.chaport-content .chaport-logo {
+      color: #ffffff;
+}
+
+chaport-powered-by {
+
+}
+
+.chaport-container a {
+      color: ;
+}
+
+
+
+.ftco-home .img {
+  height: 500px;
+  padding: 1em;
+  -webkit-box-shadow: 0px 8px 21px -10px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0px 8px 21px -10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 8px 21px -10px rgba(0, 0, 0, 0.12); }
+  .ftco-home .img.img-2 {
+    height: 250px; }
+
+.ftco-home .myaccordion {
+  margin: 0 auto;
+  overflow: hidden; }
+
+.ftco-home .myaccordion .card,
+.ftco-home .myaccordion .card:last-child .card-header {
+  border: none;
+  background: transparent; }
+
+.ftco-home .myaccordion .card-header {
+  border: none;
+  background: transparent; }
+  .ftco-home .myaccordion .card-header p {
+    position: relative;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: left; }
+
+.ftco-home .myaccordion .fa {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.3); }
+
+.ftco-home .myaccordion .btn {
+  width: 100%;
+  font-weight: 600;
+  color: black;
+  padding: 0;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  border-radius: 0 !important;
+  margin-bottom: 10px;
+  border-radius: 40px !important;
+  -webkit-box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.21) !important;
+  -moz-box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.21) !important;
+  box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.21) !important; }
+
+.ftco-home .myaccordion .btn-link:hover,
+.ftco-home .myaccordion .btn-link:focus {
+  text-decoration: none!important; }
+
+.ftco-home [data-toggle="collapse"] .fa:before {
+  content: "\f068";
+  font-family: "FontAwesome";
+  font-style: normal; }
+
+.ftco-home [data-toggle="collapse"].collapsed .fa:before {
+  content: "\f067";
+  font-family: "FontAwesome";
+  font-style: normal; }
+
+.ftco-home button[aria-expanded="true"] {
+  background-color: #323edd;
+  color: #fff !important; }
+  .ftco-home button[aria-expanded="true"] .fa {
+    color: #fff !important; }
+
+.ftco-home button[aria-expanded="false"] {
+  background-color: #fff; }
+
+.ftco-home .card-body {
+  background: #1e47e3;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.25em;
+  -webkit-box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.21) !important;
+  -moz-box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.21) !important;
+  box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.21) !important; }
+  .ftco-home .card-body ol li {
+    padding-left: 10px; }
+    .ftco-home .card-body ol li:last-child {
+      margin-bottom: 0;
+      font-size: 1.2em; }
