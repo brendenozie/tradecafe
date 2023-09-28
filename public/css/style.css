@@ -9004,14 +9004,14 @@ h1, h2, h3, h4, h5,
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d2526', endColorstr='#fd6100', GradientType=1 );
         opacity: .5; }
       .owl-carousel.home-slider .slider-item .slider-text {
-        height: 600px; }
+        height: 700px; }
         @media (max-width: 767.98px) {
           .owl-carousel.home-slider .slider-item .slider-text {
             text-align: center; 
-          height: 600px;} }
+          height: 700px;} }
         .owl-carousel.home-slider .slider-item .slider-text .subheading {
           color: #000000;
-          font-weight: 700; }
+          font-weight: 700px; }
         .owl-carousel.home-slider .slider-item .slider-text .text {
           position: relative; }
         .owl-carousel.home-slider .slider-item .slider-text h1 {
@@ -10662,7 +10662,7 @@ Header Style
   background-color: transparent;
   position: absolute;
   height: 70px;
-  top: 7%;
+  top: 585px;
   left: 0;
   right: 0;
   z-index: 100;
@@ -10957,8 +10957,8 @@ Header Style
   }
   .header-area .main-nav .logo {
     position: absolute;
-    left: 30px;
-    top: 15px;
+    /* left: 30px;
+    top: 15px; */
   }
   .background-header .main-nav .logo {
     top: 0px;
