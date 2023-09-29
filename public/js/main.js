@@ -70,11 +70,11 @@
 	    loop:true,
 	    autoplay: true, // Use classes from Animate library
 		animateOut:'fadeOut',
-		animateIn:'fadeIn', // Use classes from Animate library
+		//animateIn:'fadeIn', // Use classes from Animate library
 	    margin:0,
 	    nav:true,
 	    autoplayHoverPause: false,
-		autoplayTimeout:10000,
+		autoplayTimeout:5000,
 	    items: 1,
 	    navText : ["<span class='ion-md-arrow-back'></span>","<span class='ion-md-arrow-forward'></span>"],
 	    responsive:{
@@ -341,20 +341,20 @@
 
 	// goToTop();
 
-	var runLoop= function(){
-			var $slideHeading = $('.home-slider .owl-item.active .slider-text .col-md-6 h1');
-			var $slidePara = $('.home-slider .owl-item.active .slider-text .col-md-6 p');
+	// var runLoop= function(){
+	// 		var $slideHeading = $('.home-slider .owl-item.active .slider-text .col-md-6 h1');
+	// 		var $slidePara = $('.home-slider .owl-item.active .slider-text .col-md-6 p');
 		
-			$slideHeading.addClass('animate-in-fast').on('animationend', function(){
-				$slideHeading.removeClass('animate-in-fast').addClass('opacFull');
-			});
+	// 		$slideHeading.addClass('animate-in-fast').on('animationend', function(){
+	// 			$slideHeading.removeClass('animate-in-fast').addClass('opacFull');
+	// 		});
 		
-			$slidePara.addClass('animate-in-slow').on('animationend', function(){
-				$slidePara.removeClass('animate-in-slow').addClass('opacFull');
-			});
-		};
+	// 		$slidePara.addClass('animate-in-slow').on('animationend', function(){
+	// 			$slidePara.removeClass('animate-in-slow').addClass('opacFull');
+	// 		});
+	// 	};
 	  
-		runLoop();
+	// 	runLoop();
 
 
 		
