@@ -107,6 +107,27 @@ router.get('/mentorship', async function(req, res){
     res.render('mentorship',{cart:req.session.cart});     
 });
 
+
+router.get('/payments', async function(req, res){
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"", 
+        id: "",
+        phone: "",
+        subscription: "",
+        firstname: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+
+    res.render('paymentsfx',{cart:req.session.cart});     
+});
+
 router.get('/signals', async function(req, res){
     
     if(!req.session.cart) {

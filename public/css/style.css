@@ -10660,9 +10660,11 @@ Header Style
 
 .header-area {
   background-color: transparent;
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   height: 70px;
-  top: 585px;
+  bottom: 20px;
+  /* top: 585px; */
   left: 0;
   right: 0;
   z-index: 100;
