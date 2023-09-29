@@ -111,6 +111,7 @@
 			$slidePara.addClass('animate-in-slow').on('animationend', function(){
 			  $slidePara.removeClass('animate-in-slow').addClass('opacFull');
 			});
+
 		  },
 		onChange: function(){
 		//   var $slideHeading = $('.home-slider .owl-item.active .slider-text .col-md-6 h1');
