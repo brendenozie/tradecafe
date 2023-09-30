@@ -74,7 +74,7 @@
 	    margin:0,
 	    nav:true,
 	    autoplayHoverPause: false,
-		autoplayTimeout:5000,
+		autoplayTimeout:10000,
 	    items: 1,
 	    navText : ["<span class='ion-md-arrow-back'></span>","<span class='ion-md-arrow-forward'></span>"],
 	    responsive:{

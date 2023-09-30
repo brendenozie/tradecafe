@@ -10472,7 +10472,8 @@ textarea.form-control {
 
 
 .animate-in-fast {
-  animation: in-fast 1000ms ease-in-out forwards;
+  /* animation: in-fast 3000ms ease-in-out forwards; */
+  animation: in-fast;
 }
 
 @keyframes in-fast {
@@ -10486,7 +10487,8 @@ textarea.form-control {
   }
 }
 .animate-in-slow {
-  animation: in-slow 1000ms linear forwards;
+  /* animation: in-slow 3000ms linear forwards; */
+  animation: in-slow;
 }
 
 @keyframes in-slow {
