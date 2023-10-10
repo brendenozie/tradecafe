@@ -132,7 +132,7 @@ function doLogin(){
   }
 }
 
-const formatPhoneNumber = (phoneNumber) => {
+function formatPhoneNumber(phoneNumber) {
   if (/^(254)[17]\d{8}$/.test(phoneNumber)){
     return phoneNumber;
   }else if (/^(0)[17]\d{8}$/.test(phoneNumber)){
@@ -147,16 +147,16 @@ const formatPhoneNumber = (phoneNumber) => {
 
 function doNumberCheck(){
 
-  var fname=document.getElementById('fname').value;//$('#fname').val();    
-  var lname=document.getElementById('lname').value;//$('#lname').val(); 
-  var email=document.getElementById('email').value;//$('#lname').val();
+  var fname=document.getElementById('fname').value;  
+  var lname=document.getElementById('lname').value; 
+  var email=document.getElementById('email').value;
+  var referralcode=document.getElementById('referralcode').value;
   var selCourse= $('#selCourse').find(":selected").text();
   var selSubscription= $('#selSubscription').find(":selected").text();
-  var lphone=document.getElementById('lipapendingphone').value;//$('#lipapendingphone').val();
-  var mess=document.getElementById('mess').value;//$('#mess').val();
-  var password=document.getElementById('password').value;//$('#mess').val();
+  var lphone=document.getElementById('lipapendingphone').value;
+  var mess=document.getElementById('mess').value;
+  var password=document.getElementById('password').value;
   
-  // var mrview=document.getElementById('lipapendingphone').value;
   var flphone=formatPhoneNumber(lphone);
 
   if(flphone===''){
@@ -186,7 +186,7 @@ function doNumberCheck(){
         $.ajax({
           url: "/lipa-na-mpesa",
           type: "POST",
-          data:{token:"currentToken",password: password,phone: flphone,email: email,firstname: fname,lastname: lname,course: selCourse,subscription: selSubscription,message: mess},
+          data:{token:"currentToken",password: password,phone: flphone,email: email,firstname: fname,lastname: lname,course: selCourse,subscription: selSubscription,message: mess,referralcode:referralcode},
           success: function(text) {
             
             // messaging.onMessage(function(payload) {

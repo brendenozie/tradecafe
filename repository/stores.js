@@ -184,6 +184,31 @@ module.exports.updatePayment=async function updatePayment(post){
 
 };
 
+
+module.exports.getMyReferrals=async function getMyReferrals(uid){
+    const path_ref = db.collection("users");
+    
+    let collection = {};
+    
+    await path_ref.where("referralcode", '==', `${uid}`)
+    .get()
+    .then((querySnapshot) => {
+        if (querySnapshot.size > 0){
+            console.log("something");
+            querySnapshot.docs.map((doc) => {
+                collection[doc.id] = doc.data();
+            })
+    } else{
+        console.log("nothinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnng")
+    }
+    }
+); 
+
+
+      return collection;
+
+};
+
 module.exports.getChatDetails=async function getChatDetails(uid){
     const path_ref = db.collection("chats").doc(`${uid}`).collection('messages');
     
@@ -457,7 +482,9 @@ module.exports.uploadCart = async function uploadCart(cart){
                     lastname: cart.lastname,
                     message: cart.message,
                     password: cart.password,
-                    email: cart.email,                
+                    email: cart.email,       
+                    myreferralcode: cart.myreferralcode,
+                    referralcode:cart.referralcode,                
                     subscription: cart.subscription,
                     course: cart.course
                 });

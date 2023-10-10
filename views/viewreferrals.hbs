@@ -1,0 +1,126 @@
+{{#section 'header'}}
+	{{> iter}}
+{{/section}}
+
+{{#section 'header'}}
+		{{> iter}}
+{{/section}}
+    
+    <section class="hero-wrap hero-wrap-2" style="background: #0c0c0c;">
+      {{!-- <div class="overlay"></div> --}}
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            {{!-- <h1 class="mb-2 bread">Order History.</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Order History <i class="ion-ios-arrow-forward"></i></span></p> --}}
+          </div>
+        </div>
+      </div>
+    </section>
+		
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row">
+          <div class="col-lg-7 ftco-animate">         
+                <div class="pt-5 mt-5">
+                  <h3 class="mb-5 h4 font-weight-bold">My Referrals</h3>
+                  <h6 class="mb-5 h4 font-weight-bold"></h6>
+                  <!-- START comment-list --> 
+                  <ul class="comment-list">
+                    {{#if accs}}
+                        {{#each accs}}
+                          <li class="comment">
+                            <div class="vcard bio">
+                              <img src="/images/teacher-1.jpg" alt="Image placeholder">
+                            </div>
+                            <div class="comment-body">
+                              <h3>{{this.firstname}} {{this.lastname}}</h3>
+                              <div class="meta mb-2"></div>
+                              <p></p>
+                              <p></a></p>
+                            </div>
+                          </li>
+                        {{/each}}
+                      {{else}} 
+					  `	<li class="comment">
+                            
+                            <div class="comment-body">
+                              <h3>No refferal At the moment</h3>
+                            </div>
+                          </li>                           
+                    {{/if}}               
+                  </ul>
+                  <!-- END comment-list -->           
+            </div>
+          </div>
+          
+					
+        </div>
+      </div>
+          
+		</section>
+
+
+	<section class="ftco-gallery">
+    	<div class="container-wrap">
+    		<div class="row no-gutters">
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_1.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/course-1.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_2.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_2.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_3.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_3.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_4.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_4.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+        </div>
+    	</div>
+    </section>
+{{#section 'footer'}}
+	{{> foot}}
+{{/section}}
+
+
+{{#section 'script'}}
+	<script>
+		function approvePayment(id,status) { 
+
+          if(author && post){                      
+            $.ajax({
+              url: "/approvePayment",
+              type: "POST",
+			  data:{ordid:id, status:status},
+              success: function(text) {				
+                if(text){                      
+                  alert("Payment Approved");
+                } else{
+                  alert("An Error Occured try again later.");
+                }
+              }
+            });    
+          }else{
+            alert("Kindly fill out all details on the form .");
+            $('#btnsub').prop('disabled', false);
+          }
+		}
+  </script>
+{{/section}}

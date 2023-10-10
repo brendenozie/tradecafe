@@ -107,7 +107,6 @@ router.get('/mentorship', async function(req, res){
     res.render('mentorship',{cart:req.session.cart});     
 });
 
-
 router.get('/payments', async function(req, res){
     
     if(!req.session.cart) {
@@ -301,13 +300,17 @@ router.post('/loginconfirmcheck',urlencodedparser,async function(req, res) {
                 merchantRequestID:'',
                 checkoutRequestID:''
                 };
-            }
 
-    return res.send({
-        success:true,
-        data:lgin
-    });     
-    
+        return res.send({
+            success:true,
+            data:lgin
+        });     
+    }else{
+        return res.send({
+            success:false,
+            data:{error : "Login Error"}
+        }); 
+    }
 });
 
 router.post('/deleteblog',urlencodedparser,async function(req, res) {
@@ -808,6 +811,29 @@ router.get('/viewchats/:id',async (req, res)=>{
     res.render('viewchatstest',{cart:req.session.cart,accs:result});
 });
 
+
+router.get('/viewreferrals/:id',async (req, res)=>{    
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"",
+        phone: "", 
+        id: "",
+        firstname: "",
+        subscription: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+    let ords=await srs.getMyReferrals(req.params.id);
+
+
+    res.render('viewreferrals',{cart:req.session.cart,accs:ords});
+});
+
 router.get('/phistory',async (req, res)=>{    
     
     if(!req.session.cart) {
@@ -1267,6 +1293,8 @@ router.get('/appdtest/:id', async (req, res) => {
 });
 
 router.post('/lipa-na-mpesa', async (req, res) => {
+
+    var val = Math.floor(1000 + Math.random() * 10001);
     
     if(!req.session.cart) {
         req.session.cart = {mtoken:"",
@@ -1289,7 +1317,8 @@ router.post('/lipa-na-mpesa', async (req, res) => {
                 email: req.body.email,                
                 subscription: req.body.subscription,
                 course: req.body.course,
-                message: req.body.message,
+                message: req.body.message,                
+                myreferralcode: val,
                 password: "77777",
                 merchantRequestID:'',
                 checkoutRequestID:''
@@ -1298,6 +1327,7 @@ router.post('/lipa-na-mpesa', async (req, res) => {
     let cart = req.session.cart;
     
     cart.password= req.body.password;
+    cart.referralcode= req.body.referralcode;
     cart.merchantRequestID="MerchantRequestID";
     cart.checkoutRequestID="CheckoutRequestID";
     var lgin=await srs.uploadCart(cart);
