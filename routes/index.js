@@ -127,6 +127,90 @@ router.get('/payments', async function(req, res){
     res.render('paymentsfx',{cart:req.session.cart});     
 });
 
+
+router.get('/payphysical', async function(req, res){
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"", 
+        id: "",
+        phone: "",
+        subscription: "",
+        firstname: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+
+    res.render('payphysical',{cart:req.session.cart});     
+});
+
+
+router.get('/payprivate', async function(req, res){
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"", 
+        id: "",
+        phone: "",
+        subscription: "",
+        firstname: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+
+    res.render('payprivate',{cart:req.session.cart});     
+});
+
+
+router.get('/payonline', async function(req, res){
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"", 
+        id: "",
+        phone: "",
+        subscription: "",
+        firstname: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+
+    res.render('payonline',{cart:req.session.cart});     
+});
+
+
+router.get('/payexclusive', async function(req, res){
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"", 
+        id: "",
+        phone: "",
+        subscription: "",
+        firstname: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+
+    res.render('payexclusive',{cart:req.session.cart});     
+});
+
 router.get('/signals', async function(req, res){
     
     if(!req.session.cart) {
