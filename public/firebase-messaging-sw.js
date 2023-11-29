@@ -1,11 +1,11 @@
 // Import and configure the Firebase SDK
 // These scripts are made available when the app is served or deployed on Firebase Hosting
 // If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup
-importScripts('/__/firebase/8.10.0/firebase-app.js');
-importScripts('/__/firebase/8.10.0/firebase-messaging.js');
-importScripts('/__/firebase/init.js');
+// importScripts('/__/firebase/8.10.0/firebase-app.js');
+// importScripts('/__/firebase/8.10.0/firebase-messaging.js');
+// importScripts('/__/firebase/init.js');
 
-const messaging = firebase.messaging();
+// const messaging = firebase.messaging();
 
 /**
  * Here is is the code snippet to initialize Firebase Messaging in the Service
@@ -54,3 +54,23 @@ const messaging = firebase.messaging();
 //     notificationOptions);
 
 // });
+
+// Give the service worker access to Firebase Messaging.
+ // Note that you can only use Firebase Messaging here. Other Firebase libraries
+ // are not available in the service worker.
+ importScripts('https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js');
+ importScripts('https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js');
+
+firebase.initializeApp({
+  apiKey: "AIzaSyDMw-nzlsau7yp-Oti96ytYEPbJm34Qq4Q",
+  authDomain: "tradecafe58-d616c.firebaseapp.com",
+  databaseURL: "https://tradecafe58-d616c-default-rtdb.firebaseio.com",
+  projectId: "tradecafe58-d616c",
+  storageBucket: "tradecafe58-d616c.appspot.com",
+  messagingSenderId: "120194219146",
+  appId: "1:120194219146:web:5d4bfda6e476c1a755c173",
+  measurementId: "G-DEF5XZT1XV"
+});
+// Retrieve an instance of Firebase Messaging so that it can handle background
+// messages.
+const messaging = firebase.messaging();

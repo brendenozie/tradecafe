@@ -1,4 +1,15 @@
 // Retrieve Firebase Messaging object.
+firebase.initializeApp({
+  apiKey: "AIzaSyDMw-nzlsau7yp-Oti96ytYEPbJm34Qq4Q",
+  authDomain: "tradecafe58-d616c.firebaseapp.com",
+  databaseURL: "https://tradecafe58-d616c-default-rtdb.firebaseio.com",
+  projectId: "tradecafe58-d616c",
+  storageBucket: "tradecafe58-d616c.appspot.com",
+  messagingSenderId: "120194219146",
+  appId: "1:120194219146:web:5d4bfda6e476c1a755c173",
+  measurementId: "G-DEF5XZT1XV"
+});
+
 const messaging = firebase.messaging();
 
 function sendProduct(item) {
@@ -254,6 +265,23 @@ function doNumberCheck(){
 //resetUI();
 function doCompletePay(){
   
+  // Initialize the Firebase app in the service worker by passing in
+ // your app's Firebase config object.
+ // https://firebase.google.com/docs/web/setup#config-object
+//  const fb =firebase.initializeApp({
+//   apiKey: "AIzaSyDMw-nzlsau7yp-Oti96ytYEPbJm34Qq4Q",
+//   authDomain: "tradecafe58-d616c.firebaseapp.com",
+//   databaseURL: "https://tradecafe58-d616c-default-rtdb.firebaseio.com",
+//   projectId: "tradecafe58-d616c",
+//   storageBucket: "tradecafe58-d616c.appspot.com",
+//   messagingSenderId: "120194219146",
+//   appId: "1:120194219146:web:5d4bfda6e476c1a755c173",
+//   measurementId: "G-DEF5XZT1XV"
+// });
+// Retrieve an instance of Firebase Messaging so that it can handle background
+// messages.
+// const messaging = firebase.messaging();
+
   var fname=$('#fname').val();    
   var lname=$('#lname').val();
   var selCourse=$('#selCourse').find(":selected").text();
@@ -273,7 +301,7 @@ function doCompletePay(){
       // ...
       // Get registration token. Initially this makes a network call, once retrieved
     // subsequent calls to getToken will return from cache.
-    messaging.getToken({vapidKey: 'BEI_woLIVm6dvaqauqbuZE8-W5sTh4tInHNOP1s5z5CQnK8ROAD7d3fGhG1JdaIG8387kIiRGlxMatr5Fe4fVWw'})
+    messaging.getToken({vapidKey: 'BJUbGVPjcvvPAxPICDF0XTXj24OiNB4AWg9fXWUGCDlHC4_WEzhQva67Zznf8N5trnQ-JQLq_P0gWFno6PrjGPo'})
     .then((currentToken) => {
       // console.log('Message received. ', currentToken);
       if (currentToken) {
