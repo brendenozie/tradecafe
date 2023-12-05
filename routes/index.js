@@ -87,6 +87,42 @@ router.get('/mempro', async function(req, res){
     res.render('membershippro',{cart:req.session.cart});     
 });
 
+router.get('/mentorshipayment', async function(req, res){
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"", 
+        id: "",
+        phone: "",
+        subscription: "",
+        firstname: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"",
+        phone: "",
+        firstname: "", 
+        id: "",
+        subscription: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+    // var veh= JSON.parse(decodeURIComponent(req.query.data));
+    var mentorshiptype=req.query.mentorshiptype;
+    var mentorshipprice=req.query.mentorshipprice;
+
+    res.render('mentorshipayment',{cart:req.session.cart,mentorshiptype:mentorshiptype,mentorshipprice:mentorshipprice});     
+});
+
 router.get('/mentorship', async function(req, res){
     
     if(!req.session.cart) {

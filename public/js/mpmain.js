@@ -156,6 +156,112 @@ function formatPhoneNumber(phoneNumber) {
   
 }
 
+function doMentorshipCheck(){
+
+  var fname=document.getElementById('fname').value;  
+  var lname=document.getElementById('lname').value; 
+  var email=document.getElementById('email').value;
+  var referralcode="123456789";
+  var mentorshiptype= document.getElementById('mentorshiptype').value;
+  var mentorshiprice= document.getElementById('mentorshiprice').value;
+  var lphone=document.getElementById('lipapendingphone').value;
+  var mess="123456789";
+  var password="123456789";
+  
+  var flphone=formatPhoneNumber(lphone);
+
+  if(flphone===''){
+      alert("No Phone number Detected..");
+  }
+  else{
+
+    messaging.requestPermission()
+    .then(function() {
+      console.log('Notification permission granted.');
+      // TODO(developer): Retrieve a Instance ID token for use with FCM.
+      // ...
+      // Get registration token. Initially this makes a network call, once retrieved
+    // subsequent calls to getToken will return from cache.
+    messaging.getToken({vapidKey: 'BJUbGVPjcvvPAxPICDF0XTXj24OiNB4AWg9fXWUGCDlHC4_WEzhQva67Zznf8N5trnQ-JQLq_P0gWFno6PrjGPo'})
+    .then((currentToken) => {
+
+      // console.log('Message received. ', currentToken);
+      
+      if (currentToken) {
+
+        // $("#preloader").on(100).fadeIn();
+        // $(".preloader").on(150).fadeIn("slow");
+        $('#ftco-loader').addClass('show');
+        // $('.progress-br').removeClass('done');	
+
+        $.ajax({
+          url: "/lipa-na-mpesa",
+          type: "POST",
+          data:{token:"currentToken",password: password,phone: flphone,email: email,firstname: fname,lastname: lname,mentorshiprice: mentorshiprice,mentorshiptype: mentorshiptype,message: mess,referralcode:referralcode},
+          success: function(text) {
+            
+            messaging.onMessage(function(payload) {
+              
+              $('#ftco-loader').removeClass('show');
+              var jsonData = JSON.parse(payload.data.score);
+
+              console.log(jsonData);
+              
+              // // $('.progress-br').addClass('done');	
+              
+              // if(jsonData.ResultCode=="0"){
+                if(text && selSubscription){
+                  location.href="/blog";//"https://api.whatsapp.com/send?phone=254701958738";//"/confirmed";
+                }else{
+                  location.href="https://api.whatsapp.com/send?phone=254701958738";
+                }
+              // }else{
+              //   location.href="/fconfirmed";
+              // }
+
+            });
+      
+          }
+            // success: function(text) {
+              
+            //   // console.log(text);
+            //   // location.href="/confirmed";        
+            //    messaging.onMessage(function(payload) {
+            //     console.log('Message received. ', payload);
+            //     // Update the UI to include the received message.
+            //     // appendMessage(payload);
+            //     // location.href="/confirmed";
+            //    // console.log(payload);
+            //    var jsonData = JSON.parse(payload.data.score);
+            //   //  $("#preloader").on(500).fadeOut();
+            //   //  $(".preloader").on(600).fadeOut("slow");
+            //    $('.loader-container').addClass('done');
+            //    $('.progress-br').addClass('done');	
+            //    if(jsonData.ResultCode=="0"){
+            //     location.href="/confirmed";
+            //    }else{
+            //     location.href="/fconfirmed";
+            //    }
+
+            //   });
+        
+            // }
+          });
+      } else {
+        // Show permission request.
+        console.log('No registration token available. Request permission to generate one.');
+      }
+    }).catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+    });
+    })
+    .catch(function(err) {
+      console.log('Unable to get permission to notify. ', err);
+    });
+  }
+}
+
+
 function doNumberCheck(){
 
   var fname=document.getElementById('fname').value;  
@@ -182,7 +288,7 @@ function doNumberCheck(){
     //   // ...
     //   // Get registration token. Initially this makes a network call, once retrieved
     // // subsequent calls to getToken will return from cache.
-    // messaging.getToken({vapidKey: 'BEI_woLIVm6dvaqauqbuZE8-W5sTh4tInHNOP1s5z5CQnK8ROAD7d3fGhG1JdaIG8387kIiRGlxMatr5Fe4fVWw'})
+    // messaging.getToken({vapidKey: 'BJUbGVPjcvvPAxPICDF0XTXj24OiNB4AWg9fXWUGCDlHC4_WEzhQva67Zznf8N5trnQ-JQLq_P0gWFno6PrjGPo'})
     // .then((currentToken) => {
 
     //   // console.log('Message received. ', currentToken);
@@ -444,7 +550,7 @@ function resetUI() {
   showToken('loading...');
   // Get registration token. Initially this makes a network call, once retrieved
   // subsequent calls to getToken will return from cache.
-  messaging.getToken({vapidKey: 'BEI_woLIVm6dvaqauqbuZE8-W5sTh4tInHNOP1s5z5CQnK8ROAD7d3fGhG1JdaIG8387kIiRGlxMatr5Fe4fVWw'})
+  messaging.getToken({vapidKey: 'BJUbGVPjcvvPAxPICDF0XTXj24OiNB4AWg9fXWUGCDlHC4_WEzhQva67Zznf8N5trnQ-JQLq_P0gWFno6PrjGPo'})
   .then((currentToken) => {
     if (currentToken) {
       sendTokenToServer(currentToken);
