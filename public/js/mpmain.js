@@ -184,68 +184,35 @@ function doMentorshipCheck(){
     // subsequent calls to getToken will return from cache.
     messaging.getToken({vapidKey: 'BJUbGVPjcvvPAxPICDF0XTXj24OiNB4AWg9fXWUGCDlHC4_WEzhQva67Zznf8N5trnQ-JQLq_P0gWFno6PrjGPo'})
     .then((currentToken) => {
-
-      // console.log('Message received. ', currentToken);
-      
+          
       if (currentToken) {
 
-        // $("#preloader").on(100).fadeIn();
-        // $(".preloader").on(150).fadeIn("slow");
-        $('#ftco-loader').addClass('show');
-        // $('.progress-br').removeClass('done');	
+        $('#ftco-loader').addClass('show');	
 
         $.ajax({
           url: "/lipana-mpesa",
           type: "POST",
-          data:{token:"currentToken",password: password,phone: flphone,email: email,firstname: fname,lastname: lname,mentorshiprice: mentorshiprice,mentorshiptype: mentorshiptype,message: mess,referralcode:referralcode},
+          data:{token:currentToken,password: password,phone: flphone,email: email,firstname: fname,lastname: lname,mentorshiprice: mentorshiprice,mentorshiptype: mentorshiptype,message: mess,referralcode:referralcode},
           success: function(text) {
             
             messaging.onMessage(function(payload) {
               
               $('#ftco-loader').removeClass('show');
+              
               var jsonData = JSON.parse(payload.data.score);
 
               console.log(jsonData);
               
-              // // $('.progress-br').addClass('done');	
-              
-              // if(jsonData.ResultCode=="0"){
                 if(text && selSubscription){
-                  location.href="/blog";//"https://api.whatsapp.com/send?phone=254701958738";//"/confirmed";
+                  location.href="/blog";
                 }else{
                   location.href="https://api.whatsapp.com/send?phone=254701958738";
                 }
-              // }else{
-              //   location.href="/fconfirmed";
-              // }
 
             });
       
           }
-            // success: function(text) {
-              
-            //   // console.log(text);
-            //   // location.href="/confirmed";        
-            //    messaging.onMessage(function(payload) {
-            //     console.log('Message received. ', payload);
-            //     // Update the UI to include the received message.
-            //     // appendMessage(payload);
-            //     // location.href="/confirmed";
-            //    // console.log(payload);
-            //    var jsonData = JSON.parse(payload.data.score);
-            //   //  $("#preloader").on(500).fadeOut();
-            //   //  $(".preloader").on(600).fadeOut("slow");
-            //    $('.loader-container').addClass('done');
-            //    $('.progress-br').addClass('done');	
-            //    if(jsonData.ResultCode=="0"){
-            //     location.href="/confirmed";
-            //    }else{
-            //     location.href="/fconfirmed";
-            //    }
-
-            //   });
-        
-            // }
+         
           });
       } else {
         // Show permission request.

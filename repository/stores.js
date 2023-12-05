@@ -465,18 +465,18 @@ module.exports.uploadCart = async function uploadCart(cart){
     // https://domains.google.com/registrar/search?searchTerm=digitalspacetraders
     var usr =  {};
 
-    // mtoken:req.body.currentToken,
-    //                 phone: req.body.phone,
-    //                 firstname: req.body.firstname,
-    //                 lastname: req.body.lastname,
-    //                 email: req.body.email,
-    //                 subscription: req.body.mentorshiprice,
-    //                 course: req.body.mentorshiptype,
-    //                 message: req.body.message,
-    //                 password: req.body.password,
-    //                 myreferralcode: req.body.referralcode,
-    //                 merchantRequestID:'',
-    //                 checkoutRequestID:''
+    // mtoken": "dBxr5836YzNWcM1076LUnz:APA91bE4cZALTr3pCCzOUp25y1qwMFJvSMEzWftgpZZbIFAPtOSo0LFhg7TNhmCJPHs0E0eqqtdDAvNDt99aaZaSQCLv0kTytuETcJhLncwaKmUJqeFo1uq6jG9GAXcJYZOhbBsJw3zV",
+    // "phone": "254706448146",
+    // "firstname": "brenden",
+    // "lastname": "odhiambo",
+    // "email": "brendenodhiambo@gmail.com",
+    // "subscription": "15000",
+    // "course": "GeneralInClassMentorship",
+    // "message": "123456789",
+    // "password": "123456789",
+    // "myreferralcode": "123456789",
+    // "merchantRequestID": "98189-41719284-2",
+    // "checkoutRequestID"
 
     const userS = db.collection("users");
 
@@ -489,6 +489,7 @@ module.exports.uploadCart = async function uploadCart(cart){
         } else {
             // snapshots.forEach(orderItem => {
                 // ORDER_ITEMS.doc(orderItem.id).update({ status: "paid" })
+                
                 usr=await userS.add({
                     phone: cart.phone,
                     firstname: cart.firstname,
