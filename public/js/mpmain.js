@@ -195,7 +195,7 @@ function doMentorshipCheck(){
         // $('.progress-br').removeClass('done');	
 
         $.ajax({
-          url: "/lipa-na-mpesa",
+          url: "/lipana-mpesa",
           type: "POST",
           data:{token:"currentToken",password: password,phone: flphone,email: email,firstname: fname,lastname: lname,mentorshiprice: mentorshiprice,mentorshiptype: mentorshiptype,message: mess,referralcode:referralcode},
           success: function(text) {

@@ -1469,6 +1469,64 @@ router.post('/lipa-na-mpesa', async (req, res) => {
     }
 });
 
+router.post('/lipanampesa', async (req, res) => {
+
+    var val = Math.floor(1000 + Math.random() * 10001);
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"",
+        phone: "", 
+        id: "",
+        firstname: "",
+        lastname: "",
+        subscription: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+    req.session.cart = {mtoken:req.body.token,
+                phone: req.body.phone,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                email: req.body.email,                
+                subscription: req.body.mentorshiprice,
+                course: req.body.mentorshiptype,
+                message: req.body.message,                
+                myreferralcode: val,
+                password: "77777",
+                merchantRequestID:'',
+                checkoutRequestID:''
+                };
+
+    let cart = req.session.cart;
+    //mentorshiptype
+    //mentorshiprice
+    cart.password= req.body.password;
+    cart.referralcode= req.body.referralcode;
+    cart.merchantRequestID="MerchantRequestID";
+    cart.checkoutRequestID="CheckoutRequestID";
+    var lgin=await srs.uploadCart(cart);
+
+    if(lgin.id){
+        req.session.cart.id = lgin.id;
+    }
+
+    if(lgin){                               
+        return res.send({
+            success:true,
+            data:lgin
+        });            
+    }else{
+        return res.send({
+                    success:false,
+                    data
+                });
+    }
+});
+
 router.post('/rview',urlencodedparser,async (req, res)=> {
     
     if(!req.session.cart) {
@@ -1516,6 +1574,9 @@ router.get('/get-auth-token',mpesa.getOAuthToken);
 
 //lipa na mpesa online 
 router.post('/lipa-na-mpesaa',mpesa.getOAuthToken,mpesa.lipaNaMpesaOnline);
+
+//lipa na mpesa online 
+router.post('/lipana-mpesa',mpesa.getOAuthToken,mpesa.lipaNaMpesaMentorshipOnline);
 
 //lipa na pending
 router.post('/lipa-pending',mpesa.getOAuthToken,mpesa.lipaNaMpesaPending);

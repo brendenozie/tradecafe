@@ -465,6 +465,19 @@ module.exports.uploadCart = async function uploadCart(cart){
     // https://domains.google.com/registrar/search?searchTerm=digitalspacetraders
     var usr =  {};
 
+    // mtoken:req.body.currentToken,
+    //                 phone: req.body.phone,
+    //                 firstname: req.body.firstname,
+    //                 lastname: req.body.lastname,
+    //                 email: req.body.email,
+    //                 subscription: req.body.mentorshiprice,
+    //                 course: req.body.mentorshiptype,
+    //                 message: req.body.message,
+    //                 password: req.body.password,
+    //                 myreferralcode: req.body.referralcode,
+    //                 merchantRequestID:'',
+    //                 checkoutRequestID:''
+
     const userS = db.collection("users");
 
     await userS.where('email', '==', `${cart.email}`)
@@ -516,7 +529,10 @@ module.exports.uploadCart = async function uploadCart(cart){
         ord.amount_paid=10000;
     }else if(cart.subscription=='Lifetime ksh 20000'){
         ord.amount_paid=20000;
-    }  
+    } else{
+        ord.total=cart.subscription;
+        ord.amount_paid=cart.subscription;
+    } 
 
     await   db.collection('orders').add(ord); 
   
