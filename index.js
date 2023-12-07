@@ -1,4 +1,3 @@
-const functions = require("firebase-functions");
 const express= require("express");
 var createError = require('http-errors');
 var path = require('path');

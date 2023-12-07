@@ -194,9 +194,7 @@ function doMentorshipCheck(){
           type: "POST",
           data:{token:currentToken,password: password,phone: flphone,email: email,firstname: fname,lastname: lname,mentorshiprice: mentorshiprice,mentorshiptype: mentorshiptype,message: mess,referralcode:referralcode},
           success: function(text) {
-            
-            console.log(text);
-            
+
             messaging.onMessage(function(payload) {
               
               $('#ftco-loader').removeClass('show');
