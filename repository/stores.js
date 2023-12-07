@@ -564,7 +564,7 @@ module.exports.updateOrder = async function updateOrder(details,resp){
                                     
                                     // Send a message to the device corresponding to the provided
                                     // registration token.
-                                    admin.messaging().send(message)
+                                  await  admin.messaging().send(message)
                                         .then((response) => {
                                             // Response is a message ID string.
                                             console.log('Successfully sent message:', response);
