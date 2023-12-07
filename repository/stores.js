@@ -462,21 +462,7 @@ module.exports.getSpecificBlog=async function getSpecificBlog(id){
 
 module.exports.uploadCart = async function uploadCart(cart){
     
-    // https://domains.google.com/registrar/search?searchTerm=digitalspacetraders
     var usr =  {};
-
-    // mtoken": "dBxr5836YzNWcM1076LUnz:APA91bE4cZALTr3pCCzOUp25y1qwMFJvSMEzWftgpZZbIFAPtOSo0LFhg7TNhmCJPHs0E0eqqtdDAvNDt99aaZaSQCLv0kTytuETcJhLncwaKmUJqeFo1uq6jG9GAXcJYZOhbBsJw3zV",
-    // "phone": "254706448146",
-    // "firstname": "brenden",
-    // "lastname": "odhiambo",
-    // "email": "brendenodhiambo@gmail.com",
-    // "subscription": "15000",
-    // "course": "GeneralInClassMentorship",
-    // "message": "123456789",
-    // "password": "123456789",
-    // "myreferralcode": "123456789",
-    // "merchantRequestID": "98189-41719284-2",
-    // "checkoutRequestID"
 
     const userS = db.collection("users");
 
@@ -486,10 +472,7 @@ module.exports.uploadCart = async function uploadCart(cart){
         if (snapshots.size > 0){
             usr = snapshots.docs[0].data();
             usr.id=snapshots.docs[0].id;
-        } else {
-            // snapshots.forEach(orderItem => {
-                // ORDER_ITEMS.doc(orderItem.id).update({ status: "paid" })
-                
+        } else {                
                 usr=await userS.add({
                     phone: cart.phone,
                     firstname: cart.firstname,
@@ -498,20 +481,13 @@ module.exports.uploadCart = async function uploadCart(cart){
                     password: cart.password,
                     email: cart.email,       
                     myreferralcode: cart.myreferralcode,
-                    referralcode:cart.referralcode,                
+                    referralcode:cart.myreferralcode,                
                     subscription: cart.subscription,
                     course: cart.course
                 });
-            // })
         }
     });  
 
-    // const usr = await db.collection('users').add({
-    //     phone: cart.phone,
-    //     firstname: cart.firstname,
-    //     lastname: cart.lastname,
-    //     message: cart.message
-    // });
     var ord = {
         address:"web",
         amount_paid:"0.00",
@@ -535,7 +511,7 @@ module.exports.uploadCart = async function uploadCart(cart){
         ord.amount_paid=cart.subscription;
     } 
 
-    await   db.collection('orders').add(ord); 
+    await db.collection('orders').add(ord); 
   
     return usr;
 }

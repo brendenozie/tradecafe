@@ -281,7 +281,6 @@ class MpesaController {
         
     };
 
-
    async lipaNaMpesaOnlineCallback(req,res){
 
         //Get the transaction description

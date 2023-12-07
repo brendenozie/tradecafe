@@ -195,6 +195,8 @@ function doMentorshipCheck(){
           data:{token:currentToken,password: password,phone: flphone,email: email,firstname: fname,lastname: lname,mentorshiprice: mentorshiprice,mentorshiptype: mentorshiptype,message: mess,referralcode:referralcode},
           success: function(text) {
             
+            console.log(text);
+            
             messaging.onMessage(function(payload) {
               
               $('#ftco-loader').removeClass('show');
@@ -203,7 +205,7 @@ function doMentorshipCheck(){
 
               console.log(jsonData);
               
-                if(text && selSubscription){
+                if(text){
                   location.href="/blog";
                 }else{
                   location.href="https://api.whatsapp.com/send?phone=254701958738";
