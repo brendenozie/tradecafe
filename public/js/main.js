@@ -67,8 +67,8 @@
 
 	var carousel = function() {
 		$('.home-slider').owlCarousel({
-	    loop:true,
-	    autoplay: true, // Use classes from Animate library
+	    loop:false,
+	    autoplay: false, // Use classes from Animate library
 		animateOut:'fadeOut',
 		//animateIn:'fadeIn', // Use classes from Animate library
 	    margin:0,
