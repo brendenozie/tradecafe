@@ -374,6 +374,7 @@ function doCompletePay(){
       // ...
       // Get registration token. Initially this makes a network call, once retrieved
     // subsequent calls to getToken will return from cache.
+    
     messaging.getToken({vapidKey: 'BJUbGVPjcvvPAxPICDF0XTXj24OiNB4AWg9fXWUGCDlHC4_WEzhQva67Zznf8N5trnQ-JQLq_P0gWFno6PrjGPo'})
     .then((currentToken) => {
       // console.log('Message received. ', currentToken);
