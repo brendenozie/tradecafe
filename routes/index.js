@@ -820,7 +820,7 @@ router.get('/blog',async function(req, res){
         res.render('blog',{cart:req.session.cart,psts:psts,zms:zoom});       
     }else{
         req.session.current_url=req.originalUrl;
-        res.redirect('/mempro');
+        res.redirect('/');
     }
 });
 

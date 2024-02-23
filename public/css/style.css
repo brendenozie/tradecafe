@@ -10930,7 +10930,7 @@ Header Style
 }
 
 .header-area.header-sticky {
-  min-height: 100px;
+  min-height: 80px;
 }
 
 .header-area.header-sticky .nav li a.active {
@@ -10986,7 +10986,7 @@ Header Style
   .header-area {
     background-color: #f7f7f7;
     padding: 0px 15px;
-    height: 100px;
+    height: 80px;
     box-shadow: none;
     text-align: center;
   }
@@ -11072,6 +11072,16 @@ Header Style
   .header-area .main-nav .nav li.submenu:hover ul, .header-area .main-nav .nav li.submenu:focus ul {
     height: 0px;
   }
+
+
+  .owl-carousel.home-slider .slider-item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left !important;
+    height: 765px;
+    position: relative;
+    z-index: 0;
+}
 }
 
 
