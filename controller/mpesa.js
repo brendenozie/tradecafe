@@ -69,9 +69,9 @@ class MpesaController {
         let partyA = req.body.phone;//"party-sending-funds"; //should follow the format:2547xxxxxxxx
         let partyB = process.env.LIPA_NA_MPESA_SHORTCODE;//paybill;
         let phoneNumber = req.body.phone;//"party-sending-funds"; //should follow the format:2547xxxxxxxx
-        let callBackUrl = "https://statesfx.com/lipa-na-mpesa-callback/"+cart.mtoken;//req.body.token;
-        let accountReference = "statesFx site";
-        let transaction_desc = "statesFx site";
+        let callBackUrl = "https://tradecafeafrica.com/lipa-na-mpesa-callback/"+cart.mtoken;//req.body.token;
+        let accountReference = "tradecafeafrica site";
+        let transaction_desc = "tradecafeafrica site";
 
         try {
 
@@ -151,9 +151,9 @@ class MpesaController {
         let partyA = req.body.phone;//"party-sending-funds"; //should follow the format:2547xxxxxxxx
         let partyB = process.env.LIPA_NA_MPESA_SHORTCODE;//paybill;
         let phoneNumber = req.body.phone;//"party-sending-funds"; //should follow the format:2547xxxxxxxx
-        let callBackUrl = "https://statesfx.com/lipa-na-mpesa-callback/"+cart.mtoken;//req.body.token;
-        let accountReference = "statesFx site";
-        let transaction_desc = "statesFx site";
+        let callBackUrl = "https://tradecafeafrica.com/lipa-na-mpesa-callback/"+cart.mtoken;//req.body.token;
+        let accountReference = "tradecafeafrica site";
+        let transaction_desc = "tradecafeafrica site";
 
         try {
 
@@ -219,9 +219,9 @@ class MpesaController {
         let partyA = req.body.phone;//"party-sending-funds"; //should follow the format:2547xxxxxxxx
         let partyB = process.env.LIPA_NA_MPESA_SHORTCODE;//paybill;
         let phoneNumber = req.body.phone;//"party-sending-funds"; //should follow the format:2547xxxxxxxx
-        let callBackUrl = "https://statesfx.com/lipa-na-mpesa-callback/"+req.body.token;
-        let accountReference = "statesFX site";
-        let transaction_desc = "statesFXSpace site";
+        let callBackUrl = "https://tradecafeafrica.com/lipa-na-mpesa-callback/"+req.body.token;
+        let accountReference = "tradecafeafrica site";
+        let transaction_desc = "tradecafeafricaSpace site";
 
         // let url = process.env.STKPush;
         // let bs_short_code = process.env.paybill;
