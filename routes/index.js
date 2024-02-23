@@ -163,6 +163,45 @@ router.get('/payments', async function(req, res){
     res.render('paymentsfx',{cart:req.session.cart});     
 });
 
+router.get('/tradingcourse', async function(req, res){
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"", 
+        id: "",
+        phone: "",
+        subscription: "",
+        firstname: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+
+    res.render('tradingcourse',{cart:req.session.cart});     
+});
+
+router.get('/tradingsignals', async function(req, res){
+    
+    if(!req.session.cart) {
+        req.session.cart = {mtoken:"", 
+        id: "",
+        phone: "",
+        subscription: "",
+        firstname: "",
+        lastname: "",
+        course: "",
+        message: "",
+        merchantRequestID:'',
+        checkoutRequestID:''
+        };
+    }   
+
+
+    res.render('tradingsignals',{cart:req.session.cart});     
+});
 
 router.get('/payphysical', async function(req, res){
     
