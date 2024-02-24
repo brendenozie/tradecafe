@@ -10677,6 +10677,7 @@ Header Style
 }
 
 .header-area .main-nav {
+  line-height:0.6;
   min-height: 80px;
   background: transparent;
   display: flex;
